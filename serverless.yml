@@ -1,0 +1,39 @@
+service: horror-task
+
+frameworkVersion: '2'
+
+provider:
+  name: aws
+  runtime: ruby2.7
+
+functions:
+  pusher:
+    handler: handler.pusher
+    events:
+      - http:
+          path: '/webhook'
+          method: post
+          cors:
+            origin: '*'
+            headers:
+              - Content-Type
+              - X-Amz-Date
+              - Authorization
+              - X-Api-Key
+              - X-Amz-Security-Token
+              - X-Amz-User-Agent
+            allowCredentials: false
+    environment:
+      HORROR_TASK_URL: 'https://horror-tasks.firebaseio.com'
+
+package:
+  include:
+    - handler.rb
+
+plugins:
+  - serverless-ruby-package
+
+# custom:
+#   hooks:
+#     package:initialize:
+#       - bundle install --deployment

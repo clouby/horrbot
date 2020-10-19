@@ -1,0 +1,13 @@
+{
+	"name": "horrlambda",
+	"version": "1.0.0",
+	"description": "",
+	"keywords": [
+		"bots"
+	],
+	"author": "clouby",
+	"license": "ISC",
+	"devDependencies": {
+		"serverless-ruby-package": "^1.4.0"
+	}
+}
